@@ -17,12 +17,12 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             girlImage,
-            const SizedBox(
-              height: 32,
+            SizedBox(
+              height: 16,
             ),
             ElevatedButton(
               onPressed: () {},
-              child: const Text('Get started!'),
+              child: Text('Get started!'),
             )
           ],
         ),

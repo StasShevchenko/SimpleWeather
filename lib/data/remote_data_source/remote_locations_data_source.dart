@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 import '../models/location_dto.dart';
 
-class LocationsDataSource {
+class RemoteLocationsDataSource {
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://api.openweathermap.org/geo/1.0',
