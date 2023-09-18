@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_weather/assets/colors/app_colors.dart';
+import 'package:simple_weather/presentation/pages/add_location_page/add_location_page.dart';
 
 class SelectLocationPage extends StatelessWidget {
   const SelectLocationPage({super.key});
@@ -8,9 +9,9 @@ class SelectLocationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select location'),
+        title: const Text('Select location'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           children: [
             Expanded(
@@ -27,8 +28,11 @@ class SelectLocationPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryAccent,
         elevation: 0.0,
-        onPressed: () {},
-        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const AddLocationPage()));
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

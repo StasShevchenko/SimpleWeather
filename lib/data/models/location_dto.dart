@@ -14,19 +14,20 @@ class LocationDto extends HiveObject {
   final double lon;
 
   @HiveField(3)
-  final String state;
+  final String fullName;
 
   LocationDto(
       {required this.name,
-      required this.state,
       required this.lat,
-      required this.lon});
+      required this.lon,
+      required this.fullName});
 
   factory LocationDto.fromJson(Map<String, dynamic> json) {
     return LocationDto(
-        name: json['name'],
-        state: json['state'],
-        lat: json['lat'],
-        lon: json['lon']);
+        name: (json['display_name'] as String).split(', ')[0],
+        lat: double.parse(json['lat']),
+        lon: double.parse(json['lon']),
+        fullName: json['display_name']
+    );
   }
 }

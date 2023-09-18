@@ -6,7 +6,7 @@ import '../models/location_dto.dart';
 class RemoteLocationsDataSource {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'https://api.openweathermap.org/geo/1.0',
+      baseUrl: 'https://us1.locationiq.com/v1',
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 5),
     ),
@@ -17,19 +17,19 @@ class RemoteLocationsDataSource {
   Future<List<LocationDto>> getLocationsByName(
       {required String locationName}) async {
     List<LocationDto> locations = [];
-    final dataList = (await dio.get(
-      '/direct',
-      queryParameters: {
-        'limit': 5,
-        'appid': apiKey,
-        'q': locationName,
-      },
-    ))
-        .data as List<dynamic>;
-    for (Map<String, dynamic> location in dataList) {
-      final locationDto = LocationDto.fromJson(location);
-      locations.add(locationDto);
-    }
-    return locations;
+      final data = (await dio.get(
+        '/search',
+        queryParameters: {
+          'key': apiKey,
+          'format': 'json',
+          'q': locationName,
+        },
+      ))
+          .data as List<dynamic>;
+      for(Map<String, dynamic> locationJson in data){
+        final location = LocationDto.fromJson(locationJson);
+        locations.add(location);
+      }
+      return locations;
   }
 }
