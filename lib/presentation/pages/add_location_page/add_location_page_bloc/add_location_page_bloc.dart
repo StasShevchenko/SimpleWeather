@@ -31,7 +31,7 @@ class AddLocationPageBloc
     try {
       emit(state.copyWith(isSearchLoading: true, searchValue: searchQuery));
       final locations = await remoteDataSource.getLocationsByName(
-          locationName: state.searchValue);
+          locationName: state.searchValue.trim());
       emit(state.copyWith(locations: locations, isSearchLoading: false));
     } on DioException catch (exception) {
       if (exception.type == DioExceptionType.connectionTimeout ||

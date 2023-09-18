@@ -58,8 +58,11 @@ class AddLocationPage extends StatelessWidget {
                         ],
                       )
                     else if (state.isSearchLoading)
-                      CircularProgressIndicator(
-                        color: AppColors.primaryAccent,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: CircularProgressIndicator(
+                          color: AppColors.primaryAccent,
+                        ),
                       )
                     else if (state.locations.isNotEmpty)
                       Expanded(
@@ -72,7 +75,11 @@ class AddLocationPage extends StatelessWidget {
                             },
                           ),
                         ),
-                      ),
+                      )
+                    else
+                      const Expanded(
+                        child: Text('Ничего не было найдено :('),
+                      )
                   ],
                 ),
               ),

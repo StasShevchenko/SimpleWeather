@@ -17,6 +17,7 @@ class RemoteLocationsDataSource {
   Future<List<LocationDto>> getLocationsByName(
       {required String locationName}) async {
     List<LocationDto> locations = [];
+    try {
       final data = (await dio.get(
         '/search',
         queryParameters: {
@@ -26,10 +27,16 @@ class RemoteLocationsDataSource {
         },
       ))
           .data as List<dynamic>;
-      for(Map<String, dynamic> locationJson in data){
+      for (Map<String, dynamic> locationJson in data) {
         final location = LocationDto.fromJson(locationJson);
         locations.add(location);
       }
       return locations;
+    } on DioException catch(exception) {
+      if(exception.response!.statusCode == 400) {
+        return [];
+      }
+      return [];
+    }
   }
 }
