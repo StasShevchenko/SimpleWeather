@@ -22,7 +22,17 @@ class AddLocationPageBloc
           _searchLocations(searchEvent.value);
         case PageRefreshed():
           _searchLocations();
-        case LocationAdded():
+        case LocationAdded event:
+          final addResult = await localDataSource.addLocation(event.location);
+          if (addResult) {
+            emit(
+              state.copyWith(isLocationAdded: 1),
+            );
+          } else {
+            emit(
+              state.copyWith(isLocationAdded: -1),
+            );
+          }
       }
     });
   }

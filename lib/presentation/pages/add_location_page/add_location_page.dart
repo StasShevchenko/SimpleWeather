@@ -14,7 +14,21 @@ class AddLocationPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddLocationPageBloc(),
       child: BlocConsumer<AddLocationPageBloc, AddLocationPageState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.isLocationAdded == 1) {
+            final snackBar = SnackBar(
+              backgroundColor: AppColors.primaryAccent,
+              content: Text('Location is added to your list!'),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          } else if (state.isLocationAdded == -1) {
+            final snackBar = SnackBar(
+              backgroundColor: AppColors.primaryAccent,
+              content: Text('Location is already in your list!'),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+        },
         builder: (context, state) {
           final bloc = context.read<AddLocationPageBloc>();
           return Scaffold(
@@ -51,10 +65,11 @@ class AddLocationPage extends StatelessWidget {
                             height: 16,
                           ),
                           ElevatedButton(
-                              onPressed: () {
-                                bloc.add(PageRefreshed());
-                              },
-                              child: const Text('Повторить'))
+                            onPressed: () {
+                              bloc.add(PageRefreshed());
+                            },
+                            child: const Text('Повторить'),
+                          )
                         ],
                       )
                     else if (state.isSearchLoading)

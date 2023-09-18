@@ -22,6 +22,7 @@ class _DebouncedTextFieldState extends State<DebouncedTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      textCapitalization: TextCapitalization.words,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       onChanged: (value) {
         timer.cancel();
