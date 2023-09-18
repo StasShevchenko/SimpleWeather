@@ -1,56 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:simple_weather/assets/colors/app_colors.dart';
 import 'package:simple_weather/assets/themes/app_theme.dart';
+import 'package:simple_weather/data/local_data_source/local_locations_data_source.dart';
+import 'package:simple_weather/data/models/location_dto.dart';
+import 'package:simple_weather/data/remote_data_source/remote_locations_data_source.dart';
+import 'package:simple_weather/presentation/pages/select_location_page/select_location_page.dart';
+import 'package:simple_weather/presentation/pages/welcome_page/welcome_page.dart';
 
 Future<void> main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
- // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+  await Hive.initFlutter();
+  Hive.registerAdapter(LocationDtoAdapter());
+  await Hive.openBox('locationsBox');
+  LocalLocationsDataSource locationsDataSource = LocalLocationsDataSource();
+  final locationsList = await locationsDataSource.getAllLocations();
+  final isFirstUsage = locationsList.isEmpty;
+  runApp( MyApp(isFirstUsage: isFirstUsage));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isFirstUsage;
+
+  const MyApp({super.key, required this.isFirstUsage});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: appTheme(),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      backgroundColor: AppColors.lightBackground,
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Development is started!'),
-              SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(onPressed: () {}, child: Text('Начать'))
-            ],
-          ),
-        ),
-      ),
+      home: isFirstUsage ? const WelcomePage() : const SelectLocationPage()
     );
   }
 }
