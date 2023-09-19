@@ -12,7 +12,7 @@ class RemoteLocationsDataSource {
     ),
   );
 
-  final String apiKey = const String.fromEnvironment('API_KEY');
+  final String apiKey = const String.fromEnvironment('GEO_API_KEY');
 
   Future<List<LocationDto>> getLocationsByName(
       {required String locationName}) async {
