@@ -40,6 +40,7 @@ class WeatherDayListItem extends StatelessWidget {
               ),
               SizedBox(
                 width: 40,
+                height: 40,
                 child:
                     FittedBox(child: SvgPicture.asset(weatherData.imagePath)),
               ),

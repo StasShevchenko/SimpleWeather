@@ -8,6 +8,7 @@ import 'package:simple_weather/data/models/location_dto.dart';
 import 'package:simple_weather/presentation/pages/main_weather_page/components/main_weather_page_app_bar.dart';
 import 'package:simple_weather/presentation/pages/main_weather_page/components/weather_day_list_item.dart';
 import 'package:simple_weather/presentation/pages/main_weather_page/components/weather_metrics_bar.dart';
+import '../../../data/utils/weather_code_info.dart';
 import 'main_weather_page_bloc/main_weather_page_bloc.dart';
 
 class MainWeatherPage extends StatelessWidget {
@@ -154,7 +155,7 @@ class MainWeatherPage extends StatelessWidget {
                                   height: 144,
                                   width: 144,
                                   child: SvgPicture.asset(
-                                    'assets/weather_images/clear.svg',
+                                    getWeatherImage('1000'),
                                   ),
                                 ),
                               ),
