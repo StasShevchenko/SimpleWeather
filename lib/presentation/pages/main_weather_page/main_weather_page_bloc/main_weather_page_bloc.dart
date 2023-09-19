@@ -28,7 +28,6 @@ class MainWeatherPageBloc
 
   Future<void> _init() async {
     try {
-      emit(state.copyWith(isWeatherLoading: true));
       final weatherInfo = await weatherDataSource.getWeekWeatherByCoordinates(
           lat: currentLocation.lat.toString(),
           lon: currentLocation.lon.toString());
