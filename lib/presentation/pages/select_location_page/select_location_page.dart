@@ -44,7 +44,9 @@ class SelectLocationPage extends StatelessWidget {
                     onItemClicked: (LocationDto location) {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const MainWeatherPage(),
+                          builder: (context) => MainWeatherPage(
+                            currentLocation: box.values.toList()[index],
+                          ),
                         ),
                       );
                     },
