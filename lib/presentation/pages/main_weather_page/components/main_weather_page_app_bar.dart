@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:simple_weather/presentation/pages/select_location_page/select_location_page.dart';
 
 import '../../../../assets/colors/app_colors.dart';
 import 'dart:math' as math;
-
 
 class MainWeatherPageAppBar extends StatelessWidget {
   final String title;
@@ -25,13 +25,19 @@ class MainWeatherPageAppBar extends StatelessWidget {
             width: 8,
           ),
           InkWell(
-            onTap: () => Navigator.of(context).pop(),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SelectLocationPage(),
+              ),
+            ),
             child: Text(
               title,
               style: TextStyle(color: AppColors.primaryAccent),
             ),
           ),
-          const SizedBox(width: 8,),
+          const SizedBox(
+            width: 8,
+          ),
           Transform.rotate(
             angle: 270 * math.pi / 180,
             child: const Icon(
@@ -40,7 +46,9 @@ class MainWeatherPageAppBar extends StatelessWidget {
               size: 20,
             ),
           ),
-          const SizedBox(width: 8,)
+          const SizedBox(
+            width: 8,
+          )
         ],
       ),
     );

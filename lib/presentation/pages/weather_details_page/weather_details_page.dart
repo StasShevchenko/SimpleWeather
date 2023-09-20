@@ -7,7 +7,6 @@ import 'package:simple_weather/presentation/pages/weather_details_page/component
 import 'package:simple_weather/presentation/ui_kit/weather_metrics_bar.dart';
 
 import '../../../data/models/location_dto.dart';
-import '../../../data/utils/weather_code_info.dart';
 
 class WeatherDetailsPage extends StatelessWidget {
   final DayWeatherDto weatherInfo;
