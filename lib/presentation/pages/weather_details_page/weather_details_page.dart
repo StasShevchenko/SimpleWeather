@@ -86,7 +86,7 @@ class WeatherDetailsPage extends StatelessWidget {
                                           top: 16.0,
                                           bottom: 0),
                                       child: Text(
-                                        '16°',
+                                        '${weatherInfo.maxTemperature}°',
                                         style: TextStyle(
                                             height: 0,
                                             fontSize: 48,
@@ -94,16 +94,16 @@ class WeatherDetailsPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const Align(
+                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Padding(
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                           right: 24.0,
                                           left: 24.0,
                                           bottom: 16.0),
                                       child: Text(
-                                        'Clear',
-                                        style: TextStyle(
+                                        weatherInfo.shortWeatherDescription,
+                                        style: const TextStyle(
                                             height: 0,
                                             color: Colors.white,
                                             fontSize: 24),
@@ -132,7 +132,7 @@ class WeatherDetailsPage extends StatelessWidget {
                               height: 144,
                               width: 144,
                               child: SvgPicture.asset(
-                                getWeatherImage('1000'),
+                                weatherInfo.imagePath,
                               ),
                             ),
                           ),
