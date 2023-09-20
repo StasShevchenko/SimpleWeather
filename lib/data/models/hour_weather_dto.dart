@@ -19,9 +19,9 @@ class HourWeatherDto {
   factory HourWeatherDto.fromJson(Map<String, dynamic> json) {
     return HourWeatherDto(
         time: DateTime.parse(json['time']),
-        maxTemperature: json['values']['temperature'].toString(),
-        humidity: json['values']['humidity'].toString(),
-        windSpeed: json['values']['windSpeed'].toString(),
+        maxTemperature: json['values']['temperature'].toStringAsFixed(0),
+        humidity: json['values']['humidity'].toStringAsFixed(0),
+        windSpeed: json['values']['windSpeed'].toStringAsFixed(0),
         shortWeatherDescription: getWeatherDescription(json['values']['weatherCode'].toString()),
         imagePath: getWeatherImage(json['values']['weatherCode'].toString()));
   }

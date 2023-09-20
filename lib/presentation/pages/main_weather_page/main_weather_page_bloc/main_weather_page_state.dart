@@ -8,7 +8,7 @@ class MainWeatherPageState {
 
   MainWeatherPageState(
       {this.weatherInfo = const [],
-      this.isWeatherLoading = true,
+      this.isWeatherLoading = false,
       this.isConnectionError = false,
       this.isApiRestricted = false});
 

@@ -22,9 +22,9 @@ class DayWeatherDto {
   factory DayWeatherDto.fromJson(Map<String, dynamic> json) {
     return DayWeatherDto(
         time: DateTime.parse(json['time']),
-        maxTemperature: json['values']['temperatureMax'].toString(),
-        humidity: json['values']['humidityMax'].toString(),
-        windSpeed: json['values']['windSpeedAvg'].toString(),
+        maxTemperature: json['values']['temperatureMax'].toStringAsFixed(0),
+        humidity: json['values']['humidityMax'].toStringAsFixed(0),
+        windSpeed: json['values']['windSpeedAvg'].toStringAsFixed(0),
         shortWeatherDescription:
             getWeatherDescription(json['values']['weatherCodeMax'].toString()),
         imagePath:

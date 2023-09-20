@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hive/hive.dart';
-import 'package:lottie/lottie.dart';
 import 'package:simple_weather/assets/colors/app_colors.dart';
 import 'package:simple_weather/data/models/day_weather_dto.dart';
+import 'package:simple_weather/data/models/hour_weather_dto.dart';
 import 'package:simple_weather/data/models/location_dto.dart';
 import 'package:simple_weather/presentation/pages/main_weather_page/components/main_weather_page_app_bar.dart';
 import 'package:simple_weather/presentation/pages/main_weather_page/components/weather_day_list_item.dart';
-import 'package:simple_weather/presentation/pages/main_weather_page/components/weather_metrics_bar.dart';
+import 'package:simple_weather/presentation/pages/weather_details_page/weather_details_page.dart';
 import 'package:simple_weather/presentation/ui_kit/weather_loader.dart';
+import 'package:simple_weather/presentation/ui_kit/weather_metrics_bar.dart';
+
 import '../../../data/utils/weather_code_info.dart';
 import 'main_weather_page_bloc/main_weather_page_bloc.dart';
 
@@ -20,13 +21,56 @@ class MainWeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<HourWeatherDto> hours = [
+      HourWeatherDto.fromJson({
+        'time': '2023-09-19T09:01:00Z',
+        'values': {
+          'temperature': 23,
+          'humidity': 87.95,
+          'windSpeed': 2.02,
+          'weatherCode': 1001
+        }
+      }),
+      HourWeatherDto.fromJson({
+        'time': '2023-09-19T10:01:00Z',
+        'values': {
+          'temperature': 23,
+          'humidity': 87.95,
+          'windSpeed': 2.02,
+          'weatherCode': 1001
+        }
+      }),
+      HourWeatherDto.fromJson({
+        'time': '2023-09-19T11:01:00Z',
+        'values': {
+          'temperature': 23,
+          'humidity': 87.95,
+          'windSpeed': 2.02,
+          'weatherCode': 1001
+        }
+      }),
+    ];
+
+    final weatherDay = DayWeatherDto.fromJson({
+      'time': '2023-09-19T09:01:00Z',
+      'values': {
+        'temperatureMax': 23,
+        'humidityMax': 87.95,
+        'windSpeedAvg': 2.02,
+        'weatherCodeMax': 1000
+      },
+    });
+    weatherDay.hoursWeatherItems.addAll(hours);
+
     List<DayWeatherDto> days = [
+      weatherDay,
+      weatherDay,
       DayWeatherDto.fromJson({
         'time': '2023-09-19T09:01:00Z',
         'values': {
           'temperatureMax': 23,
           'humidityMax': 87.95,
-          'windSpeedAwg': 2.02,
+          'windSpeedAvg': 2.02,
           'weatherCodeMax': 1000
         },
       }),
@@ -35,7 +79,7 @@ class MainWeatherPage extends StatelessWidget {
         'values': {
           'temperatureMax': 23,
           'humidityMax': 87.95,
-          'windSpeedAwg': 2.02,
+          'windSpeedAvg': 2.02,
           'weatherCodeMax': 1000
         },
       }),
@@ -44,25 +88,7 @@ class MainWeatherPage extends StatelessWidget {
         'values': {
           'temperatureMax': 23,
           'humidityMax': 87.95,
-          'windSpeedAwg': 2.02,
-          'weatherCodeMax': 1000
-        },
-      }),
-      DayWeatherDto.fromJson({
-        'time': '2023-09-19T09:01:00Z',
-        'values': {
-          'temperatureMax': 23,
-          'humidityMax': 87.95,
-          'windSpeedAwg': 2.02,
-          'weatherCodeMax': 1000
-        },
-      }),
-      DayWeatherDto.fromJson({
-        'time': '2023-09-19T09:01:00Z',
-        'values': {
-          'temperatureMax': 23,
-          'humidityMax': 87.95,
-          'windSpeedAwg': 2.02,
+          'windSpeedAvg': 2.02,
           'weatherCodeMax': 1000
         },
       }),
@@ -106,10 +132,13 @@ class MainWeatherPage extends StatelessWidget {
                       height: 16,
                     ),
                     ElevatedButton(
-                        onPressed: () {
-                          bloc.add(PageRefreshed());
-                        },
-                        child: const Text('Try again'))
+                      onPressed: () {
+                        bloc.add(
+                          PageRefreshed(),
+                        );
+                      },
+                      child: const Text('Try again'),
+                    )
                   ],
                 ),
               );
@@ -259,7 +288,17 @@ class MainWeatherPage extends StatelessWidget {
                                 itemBuilder: (context, index) => Padding(
                                   padding: const EdgeInsets.only(right: 12.0),
                                   child: WeatherDayListItem(
-                                      weatherData: days[index], isToday: true),
+                                    weatherData: days[index],
+                                    isToday: true,
+                                    onItemClicked: () =>
+                                        Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => WeatherDetailsPage(
+                                            weatherInfo: days[index],
+                                            locationInfo: currentLocation),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

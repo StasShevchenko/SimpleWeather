@@ -18,13 +18,13 @@ class AddLocationPage extends StatelessWidget {
           if (state.isLocationAdded == 1) {
             final snackBar = SnackBar(
               backgroundColor: AppColors.primaryAccent,
-              content: Text('Location is added to your list!'),
+              content: const Text('Location is added to your list!'),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           } else if (state.isLocationAdded == -1) {
             final snackBar = SnackBar(
               backgroundColor: AppColors.primaryAccent,
-              content: Text('Location is already in your list!'),
+              content: const Text('Location is already in your list!'),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }

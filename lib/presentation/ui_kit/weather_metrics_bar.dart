@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../assets/colors/app_colors.dart';
+import '../../assets/colors/app_colors.dart';
 
 class WeatherMetricsBar extends StatelessWidget {
+  final Color? labelsColor;
   final String temperature;
   final String humidity;
   final String windSpeed;
@@ -12,7 +13,8 @@ class WeatherMetricsBar extends StatelessWidget {
       {super.key,
       required this.temperature,
       required this.humidity,
-      required this.windSpeed});
+      required this.windSpeed,
+      this.labelsColor});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,11 @@ class WeatherMetricsBar extends StatelessWidget {
       children: [
         Column(
           children: [
-            Text('max temp'),
-            SizedBox(
+            Text(
+              'max temp',
+              style: TextStyle(color: labelsColor ?? AppColors.primaryAccent),
+            ),
+            const SizedBox(
               height: 4,
             ),
             Container(
@@ -36,19 +41,22 @@ class WeatherMetricsBar extends StatelessWidget {
                 child: SvgPicture.asset('assets/weather_icons/sun.svg'),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Text(
               '${temperature}C',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: labelsColor ?? Colors.black),
             )
           ],
         ),
         Column(
           children: [
-            Text('humidity'),
-            SizedBox(
+            Text(
+              'humidity',
+              style: TextStyle(color: labelsColor ?? AppColors.primaryAccent),
+            ),
+            const SizedBox(
               height: 4,
             ),
             Container(
@@ -62,19 +70,22 @@ class WeatherMetricsBar extends StatelessWidget {
                 child: SvgPicture.asset('assets/weather_icons/water.svg'),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Text(
               humidity,
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: labelsColor ?? Colors.black),
             )
           ],
         ),
         Column(
           children: [
-            Text('wind speed'),
-            SizedBox(
+            Text(
+              'wind speed',
+              style: TextStyle(color: labelsColor ?? AppColors.primaryAccent),
+            ),
+            const SizedBox(
               height: 4,
             ),
             Container(
@@ -88,12 +99,12 @@ class WeatherMetricsBar extends StatelessWidget {
                 child: SvgPicture.asset('assets/weather_icons/wind.svg'),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Text(
               '${windSpeed}km/h',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: labelsColor ?? Colors.black),
             )
           ],
         ),
