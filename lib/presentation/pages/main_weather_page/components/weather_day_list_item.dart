@@ -21,46 +21,59 @@ class WeatherDayListItem extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(
         maxWidth: 100,
+        maxHeight: 120
       ),
-      child: Card(
-        shadowColor: isToday ? Colors.transparent : Colors.black,
-        surfaceTintColor: Colors.white,
-        color: isToday ? AppColors.primaryAccent : Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(10),
-          onTap: () => onItemClicked(),
-          child: Center(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  '${weatherData.maxTemperature}°',
-                  style: TextStyle(
-                      color: isToday ? Colors.white : AppColors.primaryAccent),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                SizedBox(
-                  width: 40,
-                  height: 40,
-                  child:
-                      FittedBox(child: SvgPicture.asset(weatherData.imagePath)),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  DateFormat('EEEE').format(weatherData.time),
-                  style: TextStyle(
-                      color: isToday ? Colors.white : AppColors.primaryAccent),
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: isToday ? AppColors.primaryAccent : Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                if(!isToday)
+                BoxShadow(
+                  color: Colors.grey.withOpacity(.5),
+                  blurRadius: 1.0,
+                  spreadRadius: 1.0,
+                  offset: const Offset(
+                    0, // Move to right 10  horizontally
+                    0,
+                  ),
+                )
+              ]),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(10),
+            onTap: () => onItemClicked(),
+            child: Center(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    '${weatherData.maxTemperature}°',
+                    style: TextStyle(
+                        color: isToday ? Colors.white : AppColors.primaryAccent),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  SizedBox(
+                    width: 40,
+                    height: 40,
+                    child:
+                        FittedBox(child: SvgPicture.asset(weatherData.imagePath)),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    DateFormat('EEEE').format(weatherData.time),
+                    style: TextStyle(
+                        color: isToday ? Colors.white : AppColors.primaryAccent),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

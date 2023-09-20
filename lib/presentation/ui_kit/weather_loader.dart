@@ -14,9 +14,10 @@ class WeatherLoader extends StatelessWidget {
         width: 300,
         child: Stack(
           children: [
-            FittedBox(
-              child: Lottie.asset(
-                  'assets/animations/loading_cloud.json'),
+            Lottie.asset(
+                'assets/animations/loading_cloud.json',
+              height: 300,
+              width: 300
             ),
             Align(
               alignment: Alignment.bottomCenter,

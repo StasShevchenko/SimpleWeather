@@ -37,7 +37,7 @@ class WeatherHourListItem extends StatelessWidget {
               width: 8,
             ),
             Text(
-              DateFormat('dd MMMM hh:mm').format(weatherInfo.time),
+              DateFormat('dd MMMM HH:mm').format(weatherInfo.time),
               style: TextStyle(color: AppColors.primaryAccent),
             ),
             const SizedBox(
@@ -51,13 +51,17 @@ class WeatherHourListItem extends StatelessWidget {
               width: 8,
             ),
             SizedBox(
-              width: 40,
-              height: 70,
+              width: 100,
+              height: 80,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FittedBox(
-                    child: SvgPicture.asset(weatherInfo.imagePath),
+                  SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: FittedBox(
+                      child: SvgPicture.asset(weatherInfo.imagePath),
+                    ),
                   ),
                   Text(weatherInfo.shortWeatherDescription)
                 ],

@@ -17,7 +17,7 @@ class MainWeatherPageBloc
 
   MainWeatherPageBloc({required this.currentLocation})
       : super(MainWeatherPageState()) {
-    //_init();
+    _init();
     on<MainWeatherPageEvent>((event, emit) {
       switch (event) {
         case PageRefreshed():
