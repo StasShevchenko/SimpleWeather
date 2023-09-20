@@ -20,6 +20,8 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^1.1.0
+  intl: ^0.18.1
+  lottie: ^2.6.0
 
 dev_dependencies:
   flutter_test:
@@ -33,4 +35,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/weather_images/
+    - assets/weather_icons/
+    - assets/animations/
 

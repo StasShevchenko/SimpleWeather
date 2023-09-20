@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:simple_weather/assets/colors/app_colors.dart';
 import 'package:simple_weather/data/models/location_dto.dart';
 import 'package:simple_weather/presentation/pages/add_location_page/add_location_page.dart';
+import 'package:simple_weather/presentation/pages/main_weather_page/main_weather_page.dart';
 import 'package:simple_weather/presentation/pages/select_location_page/components/location_list_item.dart';
 
 class SelectLocationPage extends StatelessWidget {
@@ -40,7 +41,15 @@ class SelectLocationPage extends StatelessWidget {
                   itemCount: box.values.length,
                   itemBuilder: (context, index) => LocationListItem(
                     location: (box.values.toList()[index] as LocationDto),
-                    onItemClicked: (LocationDto location) {},
+                    onItemClicked: (LocationDto location) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MainWeatherPage(
+                            currentLocation: box.values.toList()[index],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 );
               }

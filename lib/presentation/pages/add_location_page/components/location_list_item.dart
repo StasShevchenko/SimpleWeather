@@ -24,7 +24,7 @@ class LocationListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(location.name, textAlign: TextAlign.start,),
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
                     Text(location.fullName)
                   ],
                 ),

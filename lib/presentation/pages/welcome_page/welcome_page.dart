@@ -18,7 +18,7 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             girlImage,
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             ElevatedButton(
@@ -26,7 +26,7 @@ class WelcomePage extends StatelessWidget {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const SelectLocationPage()));
               },
-              child: Text('Get started!'),
+              child: const Text('Get started!'),
             )
           ],
         ),

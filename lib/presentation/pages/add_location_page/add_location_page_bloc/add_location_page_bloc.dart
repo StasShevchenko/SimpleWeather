@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_weather/data/local_data_source/local_locations_data_source.dart';
 import 'package:simple_weather/data/models/location_dto.dart';
 import 'package:simple_weather/data/remote_data_source/remote_locations_data_source.dart';
