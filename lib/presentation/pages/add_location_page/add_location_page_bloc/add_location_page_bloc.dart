@@ -48,6 +48,8 @@ class AddLocationPageBloc
           exception.error is SocketException ||
           exception.type == DioExceptionType.connectionError) {
         emit(state.copyWith(isSearchLoading: false, isConnectionError: true));
+      } else{
+        emit(state.copyWith(isSearchLoading: false, locations: []));
       }
     }
   }
