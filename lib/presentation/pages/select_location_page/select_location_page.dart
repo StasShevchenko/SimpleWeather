@@ -42,7 +42,7 @@ class SelectLocationPage extends StatelessWidget {
                   itemBuilder: (context, index) => LocationListItem(
                     location: (box.values.toList()[index] as LocationDto),
                     onItemClicked: (LocationDto location) {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (context) => MainWeatherPage(
                             currentLocation: box.values.toList()[index],

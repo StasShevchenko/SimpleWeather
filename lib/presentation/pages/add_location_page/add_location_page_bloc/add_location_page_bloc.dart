@@ -42,12 +42,14 @@ class AddLocationPageBloc
       emit(state.copyWith(isSearchLoading: true, searchValue: searchQuery));
       final locations = await remoteDataSource.getLocationsByName(
           locationName: state.searchValue.trim());
-      emit(state.copyWith(locations: locations, isSearchLoading: false));
+      emit(state.copyWith(locations: locations, isSearchLoading: false, isConnectionError: false));
     } on DioException catch (exception) {
       if (exception.type == DioExceptionType.connectionTimeout ||
           exception.error is SocketException ||
           exception.type == DioExceptionType.connectionError) {
         emit(state.copyWith(isSearchLoading: false, isConnectionError: true));
+      } else{
+        emit(state.copyWith(isSearchLoading: false, locations: []));
       }
     }
   }

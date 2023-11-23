@@ -13,7 +13,7 @@ Future<void> main() async {
   LocalLocationsDataSource locationsDataSource = LocalLocationsDataSource();
   final locationsList = await locationsDataSource.getAllLocations();
   final isFirstUsage = locationsList.isEmpty;
-  runApp( MyApp(isFirstUsage: isFirstUsage));
+  runApp(MyApp(isFirstUsage: isFirstUsage));
 }
 
 class MyApp extends StatelessWidget {

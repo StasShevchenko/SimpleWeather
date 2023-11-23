@@ -23,8 +23,11 @@ class WelcomePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const SelectLocationPage()));
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const SelectLocationPage(),
+                  ),
+                );
               },
               child: const Text('Get started!'),
             )

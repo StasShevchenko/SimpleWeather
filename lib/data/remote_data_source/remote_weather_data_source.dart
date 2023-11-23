@@ -17,7 +17,6 @@ class RemoteWeatherDataSource {
   Future<List<DayWeatherDto>> getWeekWeatherByCoordinates(
       {required String lat, required String lon}) async {
     List<DayWeatherDto> days = [];
-    try {
       final data = (await dio.get(
         '/forecast',
         queryParameters: {
@@ -43,11 +42,5 @@ class RemoteWeatherDataSource {
         days.add(weatherDayItem);
       }
       return days;
-    } on DioException catch (exception) {
-      if (exception.response!.statusCode == 400) {
-        return [];
-      }
-      return [];
-    }
   }
 }

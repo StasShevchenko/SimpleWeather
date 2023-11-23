@@ -15,31 +15,38 @@ class LocationListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Card(
         surfaceTintColor: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(location.name, textAlign: TextAlign.start,),
-                    const SizedBox(height: 8,),
-                    Text(location.fullName)
-                  ],
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: () => onItemClicked(location),
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        location.name,
+                        textAlign: TextAlign.start,
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(location.fullName)
+                    ],
+                  ),
                 ),
               ),
-            ),
-            IconButton(
-              onPressed: () {
-                onItemClicked(location);
-              },
-              icon: Icon(
-                Icons.check_circle_outline_sharp,
-                color: AppColors.primaryAccent,
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Icon(
+                  Icons.check_circle_outline_sharp,
+                  color: AppColors.primaryAccent,
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

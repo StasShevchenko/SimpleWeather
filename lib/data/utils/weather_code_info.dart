@@ -3,6 +3,8 @@ String getWeatherDescription(String weatherCode) {
   switch (intWeatherCode) {
     case 1000:
       return 'Clear';
+    case 1001:
+      return 'Cloudy';
     case 1100:
       return 'Mostly Clear';
     case >= 1101 && <=1103:
@@ -31,6 +33,8 @@ String getWeatherImage(String weatherCode) {
   switch (intWeatherCode) {
     case 1000:
       return 'assets/weather_images/clear.svg';
+    case 1001:
+      return 'assets/weather_images/cloudy.svg';
     case 1100:
       return 'assets/weather_images/partial_cloudy.svg';
     case >= 1101 && <=1103:

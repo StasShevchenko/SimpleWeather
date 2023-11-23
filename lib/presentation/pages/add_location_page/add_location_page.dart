@@ -60,7 +60,7 @@ class AddLocationPage extends StatelessWidget {
                       Column(
                         children: [
                           const Text(
-                              'Ошибка соединения! Проверьте ваше подключение к интернету!'),
+                              'Error! Check your internet connection!'),
                           const SizedBox(
                             height: 16,
                           ),
@@ -68,7 +68,7 @@ class AddLocationPage extends StatelessWidget {
                             onPressed: () {
                               bloc.add(PageRefreshed());
                             },
-                            child: const Text('Повторить'),
+                            child: const Text('Try again'),
                           )
                         ],
                       )
@@ -93,7 +93,7 @@ class AddLocationPage extends StatelessWidget {
                       )
                     else
                       const Expanded(
-                        child: Text('Ничего не было найдено :('),
+                        child: Text('Nothing was found :('),
                       )
                   ],
                 ),
